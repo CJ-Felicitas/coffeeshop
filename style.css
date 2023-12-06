@@ -1,6 +1,6 @@
 body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    /* If "Segoe UI" is not available, fallback to other common sans-serif fonts */
+    margin: 0;
 }
 
 /* navbar */
@@ -10,7 +10,7 @@ ul {
     padding: 0;
     overflow: hidden;
     background-color: #333;
-    position: fixed;
+
   }
   
   li {
@@ -28,3 +28,63 @@ ul {
   li a:hover {
     background-color: #111;
   }
+  #debug {
+    border: 1px solid red;
+}
+
+.mid {
+    display: flex;
+    justify-content: center;
+}
+
+.space-top {
+    margin-top: 80px;
+}
+
+.head-style {
+    background-color: brown;
+
+    padding: 7px;
+}
+
+.container-extended {
+    width: 100%;
+    margin: 0 auto;
+    background-color: black;
+    color: white;
+
+}
+
+.about {
+    padding: 10px;
+    text-align: center;
+}
+
+/* Custom form control styles */
+.custom-form-control {
+  display: block;
+  width: 20%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+/* Hover effect for custom form control */
+.custom-form-control:hover {
+  border-color: #adb5bd;
+}
+
+/* Focus state for custom form control */
+.custom-form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}

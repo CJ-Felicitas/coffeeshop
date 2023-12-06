@@ -3,7 +3,12 @@
     /* Adjust as needed */
     margin: 0 auto;
     padding: 15px;
-    /* Adjust as needed */
+}
+
+.row::after {
+    content: "";
+    display: table;
+    clear: both;
 }
 
 .col-md-1,
@@ -68,15 +73,4 @@
 
 .col-md-12 {
     width: 100%;
-}
-.clearfix:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-@media (max-width: 768px) {
-    .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6,
-    .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12 {
-        width: 100%;
-    }
 }
