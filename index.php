@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="buttons.css">
     <link rel="icon" type="image/png" href="images/logo.png">
     <style>
+
     </style>
 </head>
 
@@ -60,7 +61,7 @@
                     <form action="addtocart.php" method="post">
                         <input type="hidden" name="matcha">
                         <br>
-                        <center> <input value="0" class="custom-form-control" type="number" id="quantity"
+                        <center> <input value="0" class="form-control" type="number" id="quantity"
                                 name="quantity" min="1" max="5"></center>
                 </div>
             </div>
@@ -72,7 +73,7 @@
                     </div>
                     <input type="hidden" name="choco">
                     <br>
-                    <center> <input value="0" class="custom-form-control" type="number" id="quantity" name="quantity"
+                    <center> <input value="0" class="form-control" type="number" id="quantity" name="quantity"
                             min="1" max="5"></center>
                 </div>
             </div>
@@ -84,7 +85,7 @@
                     </div>
                     <input type="hidden" name="espresso">
                     <br>
-                    <center> <input value="0" class="custom-form-control" type="number" id="quantity" name="quantity"
+                    <center> <input value="0" class="form-control" type="number" id="quantity" name="quantity"
                             min="1" max="5"></center>
                 </div>
             </div>

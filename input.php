@@ -8,17 +8,23 @@
     <link rel="stylesheet" href="grid.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="buttons.css">
+    <link rel="stylesheet" href="navbar.css">
     <link rel="icon" type="image/png" href="images/logo.png">
 
 </head>
 
 <body>
-    <div class="head-style"></div>
+<ul>
+        <li><a href="#home">Product Inventory</a></li>
+        <li><a href="#news">Display Inventory</a></li>
+        <li><a href="#contact">Sales</a></li>
+    </ul>
+  
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <center>
-                    <h1>Welcome Seller</h1>
+                    <h1>Add Product</h1>
                 </center>
             </div>
         </div>
