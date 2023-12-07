@@ -43,14 +43,13 @@ ul {
 
 .head-style {
     background-color: brown;
-
     padding: 7px;
 }
 
 .container-extended {
     width: 100%;
     margin: 0 auto;
-    background-color: black;
+    background-color: rgb(104, 32, 32);
     color: white;
 
 }
@@ -63,7 +62,7 @@ ul {
 /* Custom form control styles */
 .custom-form-control {
   display: block;
-  width: 20%;
+  width: 100%; /* Set a specific width or adjust as needed */
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   line-height: 1.5;
@@ -74,7 +73,6 @@ ul {
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
-
 /* Hover effect for custom form control */
 .custom-form-control:hover {
   border-color: #adb5bd;
