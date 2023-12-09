@@ -15,9 +15,9 @@
 
 <body>
 <ul>
-        <li><a href="#home">Product Inventory</a></li>
-        <li><a href="#news">Display Inventory</a></li>
-        <li><a href="#contact">Sales</a></li>
+        <li><a href="input.php">Product Inventory</a></li>
+        <li><a href="display.php">Display Inventory</a></li>
+        <li><a href="sales.php">Sales</a></li>
     </ul>
   
     <div class="container">
