@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 
 create database coffeeshop;
 -- --------------------------------------------------------
-
+use coffeeshop;
 --
 -- Table structure for table `orders`
 --
