@@ -1,64 +1,49 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="icon" type="image/x-icon" href="new-favicon.ico">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="grid.css">
-    <link rel="stylesheet" href="buttons.css">
-</head>
-<body>
-    <div class="head-style">
-    </div>
-    <div class="container">
-        <center>
-            <h1>Select Order</h1>
-        </center>
-        <div class="row">
-            <div class="col-md-4">
-                <div style="padding: 10px;">
-                    <div>
-                        <img src="images/matcha.png" alt="" width=100%>
-                    </div>
-                    <form action="addtocart.php" method="post">
-                        <input type="hidden" name="matcha">
-                        <br>
-                        <center> <input value="0" class="custom-form-control" type="number" id="quantity"
-                                name="quantity" min="1" max="5"></center>
-                </div>
-            </div>
-            <!--  -->
-            <div class="col-md-4">
-                <div style="padding: 10px;">
-                    <div>
-                        <img src="images/choco.png" alt="" width=100%>
-                    </div>
-                    <input type="hidden" name="choco">
-                    <br>
-                    <center> <input value="0" class="custom-form-control" type="number" id="quantity" name="quantity"
-                            min="1" max="5"></center>
-                </div>
-            </div>
-            <!--  -->
-            <div class="col-md-4">
-                <div style="padding: 10px;">
-                    <div>
-                        <img src="images/espresso.png" alt="" width=100%>
-                    </div>
-                    <input type="hidden" name="espresso">
-                    <br>
-                    <center> <input value="0" class="custom-form-control" type="number" id="quantity" name="quantity"
-                            min="1" max="5"></center>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <center> <button type="submit" class="btn btn-success">Checkout</button> </center>
-            </form>
-        </div>
-    </div>
-</body>
+<?php
 
-</html>
+include 'dbconfig.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['checkout'])) {
+    // Retrieve customer name from the form
+    $customer_name = $_POST['customer_name'];
+
+    // Retrieve product data from the form
+    $ordered_products = $_POST['order'];
+
+    // Initialize total price
+    $total_price = 0;
+
+    // Iterate through each ordered product
+    foreach ($ordered_products as $product_name) {
+        // Retrieve product price from the products table
+        $sql_price = "SELECT product_price FROM products WHERE product_name = ?";
+        $stmt_price = $conn->prepare($sql_price);
+        $stmt_price->bind_param("s", $product_name);
+        $stmt_price->execute();
+        $result_price = $stmt_price->get_result();
+
+        // Check if the product exists in the products table
+        if ($result_price->num_rows > 0) {
+            $row_price = $result_price->fetch_assoc();
+            $product_price = $row_price['product_price'];
+
+            // Add the product price to the total
+            $total_price += $product_price;
+
+            // Insert data into the orders table
+            $sql_insert = "INSERT INTO orders (customer_name, product_name, product_price) VALUES (?, ?, ?)";
+            $stmt_insert = $conn->prepare($sql_insert);
+            $stmt_insert->bind_param("ssd", $customer_name, $product_name, $product_price);
+            $stmt_insert->execute();
+            $stmt_insert->close();
+        }
+    }
+
+    $stmt_price->close();
+
+    $conn->close();
+
+
+    header("Location: thankyou.php");
+    exit();
+}
+?>

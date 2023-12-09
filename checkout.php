@@ -18,10 +18,10 @@
         form {
             background-color: #fff;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            /* Increased shadow */
+         
             width: 100%;
             padding: 10px;
-            /* Increased padding */
+
             border-radius: 8px;
         }
     </style>
@@ -31,61 +31,48 @@
     <div>
         <div class="head-style"></div>
         <center>
-            <h1>Place an Order</h1>
+            <h1>Checkout</h1>
         </center>
         <div class="container">
             <div class="row mid">
                 <div class="col-md-5">
-                    <form action="" method="post">
-                        <?php
-                        // Assuming you have a database connection in dbconfig.php
-                        include 'dbconfig.php';
+                    <?php
+                    include 'dbconfig.php';
+                    $customer_name = $_POST['customer_name'];
 
-                        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['submitcheckout'])) {
-                            // Check if 'products' and 'customer_name' are set in the $_POST array
-                            if (isset($_POST['products']) && is_array($_POST['products']) && isset($_POST['customer_name'])) {
-     
-                        
-                                // Insert customer data into the customers table
-                                $insertCustomerSql = "INSERT INTO customers (customer_name) VALUES ('$customerName')";
-                                $conn->query($insertCustomerSql);
+                    $products = $_POST['products'];
+                    $length_count = count($products);
+                    $totalprice = 0;
 
-                                // Get the ID of the newly inserted customer
-                                $customerId = $conn->insert_id;
+                    for ($i = 0; $i < $length_count; $i++) {
+                        $sql = "SELECT product_price FROM products WHERE product_name = ?";
+                        $stmt = $conn->prepare($sql);
+                        $stmt->bind_param("s", $products[$i]);
+                        $stmt->execute();
 
-                                // Fetch prices for selected products
-                                $selectedProducts = $_POST['products'];
-                                $sql = "SELECT product_name, product_price FROM products WHERE product_name IN ('" . implode("','", $selectedProducts) . "')";
-                                $result = $conn->query($sql);
+                        $result = $stmt->get_result();
+                        $product_price = $result->fetch_assoc()['product_price'];
 
-                                // Calculate total price
-                                $totalPrice = 0;
+                        $totalprice = $totalprice + $product_price;
 
-                                // Insert each selected product into the orders table
-                                foreach ($selectedProducts as $productName) {
-                                    $productName = $conn->real_escape_string($productName); // Sanitize input
-                                    $insertOrderSql = "INSERT INTO orders (customer_id, product_id) VALUES ('$customerId', (SELECT id FROM products WHERE product_name = '$productName'))";
-                                    $conn->query($insertOrderSql);
+                        $result->close();
+                    }
+                    $conn->close();
+                    ?>
+                    <form action='order.php' method="post">
+                        <center>Total Price: ₱
+                            <?php echo number_format($totalprice, 2, '.', ','); ?>
+                        </center> <br>
+                        <center><button type="submit" name="checkout" class="btn btn-success">Checkout</button></center>
+                        <input type="hidden" value='<?php echo $customer_name ?>' name="customer_name">
+                        <?php foreach ($_POST['products'] as $product): ?>
+                            <input type="hidden" name="order[]" value="<?php echo $product; ?>">
+                        <?php endforeach; ?>
+                    </form>
 
-                                    // Fetch and display selected product and its price
-                                    $selectSql = "SELECT product_name, product_price FROM products WHERE product_name = '$productName'";
-                                    $row = $conn->query($selectSql)->fetch_assoc();
-                                    $productPrice = $row["product_price"];
-                                    $totalPrice += $productPrice;
-                                    echo '<p>' . $productName . ': ₱' . number_format($productPrice, 2) . '</p>';
-                                }
+                    <?php
 
-                                // Display total price
-                                
-                                echo '<div class="total-price">Total Price: ₱' . number_format($totalPrice, 2) . '</div>';
-                            } else {
-                                echo "Invalid request.";
-                            }
-                        }
-                        ?>
-                    <br>
-                    <center><a href=""><button type="submit" name="submitcheckout" class="btn btn-success">Checkout</button></a></center>
-                </form>
+                    ?>
                 </div>
             </div>
         </div>

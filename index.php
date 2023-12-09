@@ -52,6 +52,7 @@
         .space {
             margin-bottom: 40px;
         }
+ 
     </style>
 </head>
 
@@ -60,7 +61,7 @@
         <div class="col-md-12 head-style">
         </div>
     </div>
-    <div class="container">
+    <div class="container" id="shadow">
         <div class="row">
             <div class="col-md-12 mid">
                 <h1>COFFEE SHOP!</h1>
@@ -93,7 +94,7 @@
         </div>
 
         <?php
-        // Assuming you have a database connection in dbconfig.php
+
         include 'dbconfig.php';
 
         // Fetch all products from the products table
@@ -132,8 +133,6 @@
             // Close the container for the last row
             echo '</div>';
 
-        } else {
-            echo "";
         }
 
         // Close the database connection
