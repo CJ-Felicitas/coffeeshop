@@ -30,7 +30,8 @@
 <body>
     <div>
         <div class="head-style"></div>
-        <center>
+        <center> 
+            
             <h1>Checkout</h1>
         </center>
         <div class="container">
