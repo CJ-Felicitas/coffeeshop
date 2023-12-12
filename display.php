@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="navbar.css">
     <link rel="icon" type="image/png" href="images/logo.png">
     <style>
-        /* Custom centering styles */
+
         .container {
             width: 100%;
             margin: 0;
@@ -18,7 +18,7 @@
             box-sizing: border-box;
         }
 
-        /* Custom card styles */
+
         .card {
             width: 80%;
             background-color: #fff;
@@ -49,7 +49,7 @@
             font-weight: bold;
         }
 
-        /* Style for the product name in the card */
+
         .product-name {
             font-size: 1.2em;
             font-weight: bold;
@@ -74,10 +74,10 @@
     </div>
 
     <?php
-    // Assuming you have a database connection in dbconfig.php
+
     include 'dbconfig.php';
 
-    // Fetch all products from the products table
+
     $sql = "SELECT * FROM products";
     $result = $conn->query($sql);
 

@@ -18,10 +18,10 @@
         .form {
             background-color: #fff;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            /* Increased shadow */
+      
             width: 100%;
             padding: 10px;
-            /* Increased padding */
+
             border-radius: 8px;
         }
     </style>

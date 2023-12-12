@@ -1,4 +1,4 @@
-/* Base button styles */
+
 .btn {
     display: inline-block;
     font-weight: 400;
@@ -14,7 +14,7 @@
     transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
 
-/* Primary button */
+
 .btn-primary {
     color: #fff;
     background-color: #007bff;
@@ -30,35 +30,32 @@
 
 
 
-/* Hover effect for primary button */
 .btn-primary:hover {
     color: #fff;
     background-color: #0056b3;
     border-color: #004799;
 }
 
-/* Active state for primary button */
+
 .btn-primary:active {
     color: #fff;
     background-color: #0056b3;
     border-color: #004799;
 }
 
-/* Secondary button */
+
 .btn-secondary {
     color: #333;
     background-color: #fff;
     border-color: #ccc;
 }
 
-/* Hover effect for secondary button */
 .btn-secondary:hover {
     color: #333;
     background-color: #e6e6e6;
     border-color: #adadad;
 }
 
-/* Active state for secondary button */
 .btn-secondary:active {
     color: #333;
     background-color: #e6e6e6;

@@ -38,23 +38,23 @@
             <div class="col-md-12 mid">
                 <div class="col-md-5">
                     <?php
-                    // Assuming you have established a database connection, include the necessary files, etc.
+
                     include 'dbconfig.php';
 
-                    // Fetch and summarize sales data
+
                     $sql_sales = "SELECT product_name, SUM(product_price) as total_sales FROM orders GROUP BY product_name";
                     $result_sales = $conn->query($sql_sales);
 
-                    // Check if there are results
+
                     if ($result_sales->num_rows > 0) {
-                        // Output table header
+
                         echo '<table style="width:100%">
                                 <tr>
                                     <th>Product Name</th>
                                     <th>Total Sales</th>
                                 </tr>';
 
-                        // Output data from each row
+
                         while ($row = $result_sales->fetch_assoc()) {
                             echo '<tr>
                                     <td>' . $row['product_name'] . '</td>
@@ -62,17 +62,17 @@
                                   </tr>';
                         }
 
-                        // Close the table
+      
                         echo '</table>';
                     } else {
-                        // No sales data found
+           
                         echo "No sales data available.";
                     }
 
-                    // Close the result set
+    
                     $result_sales->close();
 
-                    // Close the database connection
+ 
                     $conn->close();
                     ?>
                 </div>
