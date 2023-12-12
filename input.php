@@ -33,13 +33,13 @@
                 <div class="col-md-5">
                     <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                         <input type="text" class="custom-form-control" name="productName"
-                            placeholder="Name of the Product">
+                            placeholder="Name of the Product" required>
                         <br>
                         <input type="text" class="custom-form-control" name="productPrice"
-                            placeholder="Price of the Product">
+                            placeholder="Price of the Product" required>
                         <br>
                         <input type="text" class="custom-form-control" name="productDescription"
-                            placeholder="Description of the Product">
+                            placeholder="Description of the Product" required>
                         <br>
                         <center>
                             <button class="btn btn-success" type="submit" name="addProduct">Add Product</button>

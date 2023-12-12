@@ -38,7 +38,7 @@
                 <div class="col-md-5">
                         <form action="checkout.php" method="post">
                             <input type="text" name="customer_name" class="custom-form-control"
-                                placeholder="Name of the Customer"><br>
+                                placeholder="Name of the Customer" required><br>
                             <?php
                             include 'dbconfig.php';
                             $sql = "SELECT product_name FROM products";
