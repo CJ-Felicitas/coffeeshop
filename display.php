@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Display Products</title>
     <link rel="stylesheet" href="style.css">
@@ -62,9 +61,8 @@
         }
     </style>
 </head>
-
 <body>
-    <ul>
+<ul>
         <li><a href="input.php">Product Inventory</a></li>
         <li><a href="display.php">Display Inventory</a></li>
         <li><a href="sales.php">Sales</a></li>
@@ -83,45 +81,38 @@
     $sql = "SELECT * FROM products";
     $result = $conn->query($sql);
 
-    // Check if there are results
     if ($result->num_rows > 0) {
-        // Open a container for the row
-        echo '<div class="container row">'; // Added the "row" class here
-
-        // Output data of each row
-        $colCount = 0; // Variable to keep track of the number of columns
+        echo '<div class="container row">';
+        $colCount = 0;
         while ($row = $result->fetch_assoc()) {
-            // Start a new row after every three columns
             if ($colCount % 3 == 0 && $colCount != 0) {
-                echo '</div>'; // Close the current row
-                echo '<div class="container row">'; // Start a new row
+                echo '</div>';
+                echo '<div class="container row">';
             }
 
-            // Start a new column for each product
             echo '<div class="col-md-4">';
             echo '<div class="card">';
             echo '<div class="card-header">' . $row["product_name"] . '</div>';
             echo '<div class="card-content">';
-            echo "<p><strong>Price:</strong> ₱" . number_format($row["product_price"], 2) . "</p>"; // Format the price with two decimal places
+            echo "<p><strong>Price:</strong> ₱" . number_format($row["product_price"], 2) . "</p>";
             echo "<hr>";
             echo "<p>" . $row["product_description"] . "</p>";
+            echo '<form method="post" action="delete_product.php">';
+            echo '<input type="hidden" name="product_id" value="' . $row["id"] . '">';
+            echo '<button type="submit" name="delete_product">Delete</button>';
+            echo '</form>';
             echo '</div>';
-            echo '</div>'; 
-            echo '</div>'; 
+            echo '</div>';
+            echo '</div>';
 
             $colCount++;
         }
-
-        // Close the container for the last row
         echo '</div>';
-
     } else {
-        echo "";
+        echo "No products found.";
     }
 
-    // Close the database connection
     $conn->close();
     ?>
 </body>
-
 </html>
